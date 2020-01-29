@@ -23,13 +23,12 @@ public class T02_StageSceneTest extends Application {
 		root.setSpacing(20); // 컨트롤과 컨트롤 사이의 간격
 		
 		Label label = new Label(); // Label 객체 생성
-		label.setText("JavaFX-------출력"); 
+		label.setText("밑에나온거죠?"); 
 		label.setFont(new Font(50)); // Font 객체를 이용하여 글자크기 설정
 		
 		Button btn = new Button();
 		btn.setText("O K");
 //		btn.setOnAction(new EventHandler<ActionEvent>() {
-//			
 //			@Override
 //			public void handle(ActionEvent event) {
 //				// 처리할 내용을 기술하는 영역
@@ -39,7 +38,7 @@ public class T02_StageSceneTest extends Application {
 		btn.setOnAction(e->Platform.exit());
 		//람다식으로 보내버리기
 		
-		// VBox에 컨트롤들 추가하기
+		// VBox에 컨트롤들 추가하기 //observable list.(node담기)
 		root.getChildren().add(label);
 		root.getChildren().add(btn);
 		
