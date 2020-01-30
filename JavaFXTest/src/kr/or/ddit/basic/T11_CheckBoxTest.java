@@ -67,6 +67,7 @@ public class T11_CheckBoxTest extends Application {
 				showInfo(chkboxs[1].getText()+"체크 해제");
 			}
 			chkboxs[0].setSelected(!chkboxs[1].isSelected());
+			//chkboxs[0].setSelected(false)로 써도된다.
 		});
 		
 		VBox vbox = new VBox(5);

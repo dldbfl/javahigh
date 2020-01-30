@@ -33,7 +33,7 @@ public class T05_BorderPaneTest extends Application {
 		TextArea txtArea = new TextArea();
 		
 		root.setTop(toolBar); // Top 영역에 ToolBar추가
-		root.setCenter(txtArea); // Center영역에 TextArea추가
+		root.setCenter(txtArea); // Center 영역에 TextArea추가
 		
 		BorderPane bottom = new BorderPane();
 		bottom.setPadding(new Insets(10));

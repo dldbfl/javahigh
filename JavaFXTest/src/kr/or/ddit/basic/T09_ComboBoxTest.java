@@ -17,7 +17,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class T09_ComboBoxTest extends Application {
-
+//1.생성자 넣기
+//2.getItems
+//3.setItems.addAll
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		BorderPane root = new BorderPane();
@@ -28,10 +31,12 @@ public class T09_ComboBoxTest extends Application {
 		combo.getItems().addAll("한강", "금강", "영산강", "낙동강");
 		combo.setValue("금강"); // 처음에 보이는 부분의 데이터 셋팅
 		
+		//1.람다
 //		combo.setOnAction(e->{
 //			System.out.println(combo.getValue());
 //		});
 		
+		//2.addListener
 		combo.valueProperty().addListener(
 			new ChangeListener<String>() {
 
@@ -45,10 +50,10 @@ public class T09_ComboBoxTest extends Application {
 		
 		ObservableList<String> fruitList = FXCollections.observableArrayList("사과", "배", "복숭아", "포도", "감");
 		
-		// 객체생성 및 데이터 초기화를 동시에...
+		// 객체생성 및 데이터 초기화를 동시에... //
 		ComboBox<String> combo2 = new ComboBox<>(fruitList);
 		
-		// 데이터 초기화 후에 추가하기
+		// 데이터 초기화 후에 추가하기 // 
 		combo2.getItems().addAll("대추","호두");
 		
 		combo2.setValue("포도");
