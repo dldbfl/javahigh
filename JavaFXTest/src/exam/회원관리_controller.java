@@ -109,7 +109,7 @@ public class 회원관리_controller implements Initializable{
 					
 					return;
 				}
-				
+				//추가
 				data.add(new Member(tfid.getText(), 
 						tfname.getText(), 
 						tftel.getText(), 
@@ -127,7 +127,7 @@ public class 회원관리_controller implements Initializable{
 					
 					return;
 				}
-				
+				//수정
 			data.set(tableView.getSelectionModel().getSelectedIndex(),new Member(tfid.getText(), 
 					tfname.getText(), 
 					tftel.getText(), 
@@ -140,7 +140,7 @@ public class 회원관리_controller implements Initializable{
 				errmsg("작업 오류", "삭제할 자료를 선택한 후 삭제하세요.");
 				return;
 			}
-			
+			//삭제
 			data.remove(tableView.getSelectionModel().getSelectedIndex());
 			
 			info("작업결과", nameCol.getText() + "님 정보를 삭제했습니다.");
@@ -158,8 +158,8 @@ public class 회원관리_controller implements Initializable{
 							//TableView에서 선택한 줄의 데이터를 가져온다.
 							Member mem = tableView.getSelectionModel().getSelectedItem();
 							
-							if(mem == null)
-								return;
+//							if(mem == null)
+//								return;
 							
 							tfid.setText(mem.getId());
 							tfname.setText(mem.getName());

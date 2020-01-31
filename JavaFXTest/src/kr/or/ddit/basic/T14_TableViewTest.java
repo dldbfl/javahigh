@@ -231,6 +231,16 @@ public class T14_TableViewTest extends Application {
 			txtAddr.requestFocus();//포커스 추가
 			
 			});
+		
+		Button btnTest2 = new Button("속성 연습 2");
+		btnTest2.setOnAction(e->{
+			txtKorName.setEditable(true);
+			txtEngName.setEditable(true);
+			
+			btnAdd.setDisable(false);	
+			btnEdit.setDisable(false);
+			
+		});
 			
 			
 			

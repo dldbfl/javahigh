@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.우편번호_controller">
+   <children>
+      <VBox prefHeight="61.0" prefWidth="569.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="543.0">
+               <children>
+                  <ComboBox fx:id="list" prefHeight="23.0" prefWidth="150.0" promptText="동이름">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </ComboBox>
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="166.0">
+                     <children>
+                        <TextField fx:id="txtarea" alignment="BASELINE_RIGHT" prefHeight="23.0" prefWidth="150.0" text="대흥" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="63.0">
+                     <children>
+                        <Button fx:id="btn" mnemonicParsing="false" text="검색" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TableView fx:id="tableView" layoutY="35.0" prefHeight="365.0" prefWidth="569.0">
+        <columns>
+          <TableColumn fx:id="t1" prefWidth="113.0" text="우편번호" />
+          <TableColumn fx:id="t2" prefWidth="102.0" text="시도" />
+            <TableColumn fx:id="t3" prefWidth="78.0" text="구군" />
+            <TableColumn fx:id="t4" prefWidth="94.0" text="동" />
+            <TableColumn fx:id="t5" prefWidth="91.0" text="번지" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
