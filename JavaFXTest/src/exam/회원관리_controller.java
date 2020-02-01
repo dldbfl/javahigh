@@ -3,7 +3,6 @@ package exam;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import exam.ManagerControler.Member;
 import javafx.fxml.Initializable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,11 +42,12 @@ public class 회원관리_controller implements Initializable{
 	@FXML TableColumn addrCol;
 
 		
-		
+	static int flag = 0;
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			
-			ObservableList<Member> data = FXCollections.observableArrayList();
+			ObservableList<Member> data = FXCollections.observableArrayList(
+					new Member("처음","값","넣어","주기"));
 			
 			tableView.setItems(data);
 			
@@ -57,31 +57,54 @@ public class 회원관리_controller implements Initializable{
 			telCol.setCellValueFactory(new PropertyValueFactory<>("tel"));
 			addrCol.setCellValueFactory(new PropertyValueFactory<>("addr"));
 			
+			
+			btncon.setDisable(true);
+			btncan.setDisable(true);
+			
+			
+			
+			
 			//추가 버튼 작업시
 			btnadd.setOnAction(e->{ //수정과 삭제 비활성화 및 확인과 취소버튼 활성화
+				btnadd.setDisable(true);
 				btnedit.setDisable(true);
 				btndel.setDisable(true);
 				btncon.setDisable(false);
 				btncan.setDisable(false);
 				
+				flag = 1;
 			});
 			
 			//수정 버튼 작업시
 			btnedit.setOnAction(e->{//추가와 삭제 비활성및 확인과 취소버튼 활성화
 				btnadd.setDisable(true);
+				btnedit.setDisable(true);
 				btndel.setDisable(true);
 				btncon.setDisable(false);
 				btncan.setDisable(false);
+				
+				flag = 2;
 			
 			});
 			
 			//삭제 버튼 작업시
 			btndel.setOnAction(e->{//추가와 수정버튼 비활성화 및 확인과 취소버튼 활성화
-
-				btnadd.setDisable(true);
-				btnedit.setDisable(true);
-				btncon.setDisable(false);
-				btncan.setDisable(false);
+				btnadd.setDisable(false);
+				btnedit.setDisable(false);
+				btndel.setDisable(false);
+				btncon.setDisable(true);
+				btncan.setDisable(true);
+				
+				
+				//삭제
+				data.remove(tableView.getSelectionModel().getSelectedIndex());
+				
+				info("작업결과", nameCol.getText() + "님 정보를 삭제했습니다.");
+				
+				tfid.clear();
+				tfname.clear();
+				tftel.clear();
+				tfaddr.clear();	
 			
 			});
 			
@@ -93,14 +116,23 @@ public class 회원관리_controller implements Initializable{
 				btncon.setDisable(true);
 				btncan.setDisable(true);
 				
+				tfid.clear();
+				tfname.clear();
+				tftel.clear();
+				tfaddr.clear();
 			});
 			
 			//확인 버튼 작업시 	
 			
 			
 			btncon.setOnAction(e->{ //작업을 진행한다.
+				btnadd.setDisable(false);
+				btnedit.setDisable(false);
+				btndel.setDisable(false);
+				btncon.setDisable(true);
+				btncan.setDisable(true);
 				
-			if(!btnadd.isDisable()) {if(tfid.getText().isEmpty() 
+			if(flag == 1) {if(tfid.getText().isEmpty() 
 					|| tfname.getText().isEmpty()	
 					|| tftel.getText().isEmpty()	
 					|| tfaddr.getText().isEmpty()) {
@@ -118,7 +150,7 @@ public class 회원관리_controller implements Initializable{
 				
 			}
 				
-			if(!btnedit.isDisable()) {if(tfid.getText().isEmpty() 
+			else if(flag == 2) {if(tfid.getText().isEmpty() 
 					|| tfname.getText().isEmpty()	
 					|| tftel.getText().isEmpty()	
 					|| tfaddr.getText().isEmpty()) {
@@ -136,17 +168,6 @@ public class 회원관리_controller implements Initializable{
 			
 			}
 			
-			if(!btndel.isDisable()) {if(tableView.getSelectionModel().isEmpty()) {
-				errmsg("작업 오류", "삭제할 자료를 선택한 후 삭제하세요.");
-				return;
-			}
-			//삭제
-			data.remove(tableView.getSelectionModel().getSelectedIndex());
-			
-			info("작업결과", nameCol.getText() + "님 정보를 삭제했습니다.");
-			
-			}
-				
 				tfid.clear();
 				tfname.clear();
 				tftel.clear();

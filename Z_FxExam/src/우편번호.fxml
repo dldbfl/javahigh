@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="exam.우편번호_controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.우편번호_controller">
    <children>
       <VBox prefHeight="61.0" prefWidth="569.0">
          <children>
             <HBox alignment="CENTER" prefHeight="35.0" prefWidth="543.0">
                <children>
-                  <ComboBox fx:id="list" prefHeight="23.0" prefWidth="150.0" promptText="동이름">
+                  <ComboBox fx:id="combobox" prefHeight="23.0" prefWidth="150.0" promptText="동이름">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </ComboBox>
                   <HBox alignment="CENTER" prefHeight="61.0" prefWidth="166.0">
                      <children>
-                        <TextField fx:id="txtarea" alignment="BASELINE_RIGHT" prefHeight="23.0" prefWidth="150.0" text="대흥" />
+                        <TextField fx:id="tfid" alignment="BASELINE_RIGHT" prefHeight="23.0" prefWidth="150.0" text="대흥" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="61.0" prefWidth="63.0">

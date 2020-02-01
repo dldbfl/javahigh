@@ -32,21 +32,21 @@ public class T09_ComboBoxTest extends Application {
 		combo.setValue("금강"); // 처음에 보이는 부분의 데이터 셋팅
 		
 		//1.람다
-//		combo.setOnAction(e->{
-//			System.out.println(combo.getValue());
-//		});
-		
-		//2.addListener
-		combo.valueProperty().addListener(
-			new ChangeListener<String>() {
-
-				@Override
-				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-					txtArea.setText(newValue);
-					System.out.println("oldValue : "+oldValue);
-					System.out.println("newValue : "+ newValue);
-				}
+		combo.setOnAction(e->{
+			System.out.println(combo.getValue());
 		});
+		
+//		//2.addListener
+//		combo.valueProperty().addListener(
+//			new ChangeListener<String>() {
+//
+//				@Override
+//				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//					txtArea.setText(newValue);
+//					System.out.println("oldValue : "+oldValue);
+//					System.out.println("newValue : "+ newValue);
+//				}
+//		});
 		
 		ObservableList<String> fruitList = FXCollections.observableArrayList("사과", "배", "복숭아", "포도", "감");
 		
