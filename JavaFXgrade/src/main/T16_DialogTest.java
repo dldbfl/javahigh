@@ -1,4 +1,4 @@
-package kr.or.ddit.basic;
+package main;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -36,26 +40,10 @@ public class T16_DialogTest extends Application {
 		// 파일 열기 창
 		Button btnFileOpen = new Button("Open FileChooser 실행");
 		btnFileOpen.setOnAction(e->{
-			FileChooser fileChooser = new FileChooser();
 			
-			// 확장자별로 파일 구분하는 필터 등록하기
-			fileChooser.getExtensionFilters().addAll(
-				new ExtensionFilter("Text Files", "*.txt"),
-				new ExtensionFilter("Image Files", 
-									"*.png","*.jpg","*.gif"),
-				new ExtensionFilter("Audio Files", "*.wav","*.mp3"),
-				new ExtensionFilter("All Files", "*.*")
-			);
+	
 			
-			// Dialog창에서 '열기'버튼을 누르면 선택한 파일 정보가 반환되고
-			// '취소'버튼을 누르면 null이 반환된다.
-			File selectFile = fileChooser
-								.showOpenDialog(primaryStage);
-			if(selectFile != null) {
-				// 이 영역에서 파일내용을 읽어오는 작업을 수행한다.
-				System.out.println("OPEN : " 
-							+ selectFile.getPath());
-			}
+	
 			
 		});
 			
@@ -134,33 +122,34 @@ public class T16_DialogTest extends Application {
 			dialog.setTitle("사용자 정의 창");
 			
 			// 4. 자식창이 나타날 컨테이너 객체 생성
-			Parent parent = null;
-			try {
-				parent = FXMLLoader.load(getClass().getResource("myDialog.fxml"));
-			}catch(IOException ex) {
-				ex.printStackTrace();
-			}
+			HBox parent2 = new HBox(100);
+			parent2.setPadding(new Insets(10));
+			parent2.setAlignment(Pos.CENTER);
+			FileChooser fileChooser = new FileChooser();
 			
-			/**
-			 *  FXML 로더 이용해서 만들어보기
-			 */
-			// 부모창에서 FXML로 만든 자식창의 컨트롤 객체 얻기
-			TextField txtName = (TextField) parent.lookup("#txtName");
-			PasswordField pass = (PasswordField) parent.lookup("#pass");
+			// 축의 값이 주로 문자열일 때 사용하는 객체
+			CategoryAxis xAxis = new CategoryAxis();
 			
-			Button btnOk = (Button) parent.lookup("#btnOk");
-			btnOk.setOnAction(e2->{
-				System.out.println("이름 : "+ txtName.getText());
-				System.out.println("비밀번호 : "+ pass.getText());
-			});
+			// 축의 값이 숫자일 때 사용하는 객체
+			NumberAxis yAxis = new NumberAxis();
 			
-			Button btnCancel = (Button) parent.lookup("#btnCancel");
-			btnCancel.setOnAction(e3->{
-				dialog.close();
-			});
+			//	위에서 만든 축 정보를 이용한 BarChart객체 생성
+			BarChart<String, Number> parent = new BarChart<>(xAxis, yAxis);
 			
+			parent.setTitle("차트 Title");
+			xAxis.setLabel("///이름들어가야하는부분");
+			yAxis.setLabel("가격");
+			
+			//BarChart에 나타날 데이터 구성하기
+			XYChart.Series<String , Number> ser1 = new XYChart.Series<>();
+			ser1.setName("2015년");
+			ser1.getData().add(new XYChart.Data<String, Number>("국어",26000));
+			ser1.getData().add(new XYChart.Data<String, Number>("영어",20000));
+			ser1.getData().add(new XYChart.Data<String, Number>("수학",10000));
+			
+			parent.getData().addAll(ser1);
 			// 5. Scene 객체 생성해서 컨테이너 객체 추가
-			Scene scene = new Scene(parent);
+			Scene scene = new Scene(parent,800,800);
 			
 			//6. Stage 객체에 Scene객체 추가
 			dialog.setScene(scene);
