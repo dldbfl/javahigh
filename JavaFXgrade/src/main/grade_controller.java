@@ -13,11 +13,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -28,7 +30,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import score.ScoreVO;
 import javafx.scene.control.TableView;
 
 
@@ -71,6 +72,43 @@ public class grade_controller  {
 	public void initialize() { 	
     	    	
     	tv.setItems(data);
+    	
+    	
+    			
+    	tv.setOnMouseClicked(e ->{
+    		
+    		// 1. Stage객체 생성
+			Stage dialog = new Stage(StageStyle.UTILITY);
+					
+			// 5. Scene 객체 생성해서 컨테이너 객체 추가
+			PieChart pieChart = new PieChart();					
+			Scene scene = new Scene(pieChart, 500, 500);
+			
+			// 차트에 들어갈 데이터 형식 만들기
+			Member mv = tv.getSelectionModel().getSelectedItem();
+	    	
+	    	//	차트에 나타날 데이터 구성하기	    	
+	    	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+	    			new PieChart.Data("국어", mv.getTlang()),
+					new PieChart.Data("수학", mv.getTmath()),
+					new PieChart.Data("영어", mv.getTeng())
+	    			
+	    	);
+			
+	    	pieChart.setTitle(mv.getTname());
+			pieChart.setLabelLineLength(20);
+			pieChart.setLegendSide(Side.RIGHT); // 범례가 나타날 위치
+			pieChart.setData(pieChartData); // 데이터 설정			
+
+			//6. Stage 객체에 Scene객체 추가
+			
+			dialog.setTitle("파이 차트");			
+			dialog.setScene(scene);
+			dialog.setResizable(false); //크기 고정
+			dialog.show();
+    	
+    		});
+    	
 	}
 	
 	@FXML
@@ -228,21 +266,6 @@ public class grade_controller  {
 		// 1. Stage객체 생성
 				Stage dialog = new Stage(StageStyle.UTILITY);
 				
-				// 2. 모달창 여부 설정
-				// 모달창은 자식창이 나타나면 부모창을 사용할 수 없다.
-				dialog.initModality(Modality.APPLICATION_MODAL);
-				
-				// 3. 부모창 지정
-//				dialog.initOwner(primaryStage);
-
-				dialog.setTitle("사용자 정의 창");
-				
-				// 4. 자식창이 나타날 컨테이너 객체 생성
-				HBox parent2 = new HBox(100);
-				parent2.setPadding(new Insets(10));
-				parent2.setAlignment(Pos.CENTER);
-				FileChooser fileChooser = new FileChooser();
-				
 				// 축의 값이 주로 문자열일 때 사용하는 객체
 				CategoryAxis xAxis = new CategoryAxis();
 				
@@ -252,9 +275,10 @@ public class grade_controller  {
 				//	위에서 만든 축 정보를 이용한 BarChart객체 생성
 				BarChart<String, Number> parent = new BarChart<>(xAxis, yAxis);
 				
-				parent.setTitle("차트 Title");
-				xAxis.setLabel("닝겐");
-				yAxis.setLabel("가격");
+				dialog.setTitle("성적 막대그래프");
+				parent.setTitle("총괄 성적 관리");
+				xAxis.setLabel("학생");
+				yAxis.setLabel("점수");
 				
 				XYChart.Series<String , Number> ser1 = new XYChart.Series<>();
 				XYChart.Series<String, Number> ser2 = new XYChart.Series<>();
@@ -268,8 +292,7 @@ public class grade_controller  {
 //				System.out.println(tableList.get(0).getTname());
 				for(int i =0; i < tableList.size();i++){
 					//BarChart에 나타날 데이터 구성하기
-					
-					
+										
 					ser1.getData().add(new XYChart.Data<String, Number>(tableList.get(i).getTname(),tableList.get(i).getTlang()));
 					ser2.getData().add(new XYChart.Data<String, Number>(tableList.get(i).getTname(),tableList.get(i).getTeng()));
 					ser3.getData().add(new XYChart.Data<String, Number>(tableList.get(i).getTname(),tableList.get(i).getTmath()));
@@ -278,7 +301,7 @@ public class grade_controller  {
 	
 				parent.getData().addAll(ser1,ser2,ser3);
 				// 5. Scene 객체 생성해서 컨테이너 객체 추가
-				Scene scene = new Scene(parent,800,800);
+				Scene scene = new Scene(parent,500,500);
 				
 				//6. Stage 객체에 Scene객체 추가
 				dialog.setScene(scene);

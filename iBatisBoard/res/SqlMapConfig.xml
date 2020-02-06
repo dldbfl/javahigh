@@ -44,7 +44,7 @@
 	그 xml문서와 아래와 같이 연결하여 사용한다.
 	형식) <sqlMap resource="경로명/파일명.xml"/> 
 	-->
-	<sqlMap resource="kr/or/ddit/board/board.xml"/>
+	<sqlMap resource="kr/or/ddit/sql/board.xml"/>
 	<!-- <sqlMap resource="ibatis/member/memberMain.xml"/> -->
 </sqlMapConfig>
 
