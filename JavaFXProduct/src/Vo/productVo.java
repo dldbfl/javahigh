@@ -4,196 +4,126 @@ public class productVo {
 	
 	private	String lprod_gu;
 	private String lprod_nm;
-	private String PROD_ID;
-	private String PROD_NAME;
-	private String PROD_LGU;
-	private String PROD_BUYER;
-	private String PROD_COST;
-	private String PROD_PRICE;
-	private String PROD_SALE;
-	private String PROD_OUTLINE;
-	private String PROD_DETAIL;
-	
-	
+	private String prod_id;
+	private String prod_name;
+	private String prod_lgu;
+	private String prod_buyer;
+	private String prod_cost;
+	private String prod_price;
+	private String prod_sale;
+	private String prod_outline;
+	private String prod_detail;
 	
 	public productVo() {
-		
+		super();
 	}
-	
 
-
-
-	public productVo(String lprod_gu, String lprod_nm, String pROD_ID, String pROD_NAME, String pROD_LGU,
-			String pROD_BUYER, String pROD_COST, String pROD_PRICE, String pROD_SALE, String pROD_OUTLINE,
-			String pROD_DETAIL) {
+	public productVo(String lprod_gu, String lprod_nm, String prod_id, String prod_name, String prod_lgu,
+			String prod_buyer, String prod_cost, String prod_price, String prod_sale, String prod_outline,
+			String prod_detail) {
 		super();
 		this.lprod_gu = lprod_gu;
 		this.lprod_nm = lprod_nm;
-		PROD_ID = pROD_ID;
-		PROD_NAME = pROD_NAME;
-		PROD_LGU = pROD_LGU;
-		PROD_BUYER = pROD_BUYER;
-		PROD_COST = pROD_COST;
-		PROD_PRICE = pROD_PRICE;
-		PROD_SALE = pROD_SALE;
-		PROD_OUTLINE = pROD_OUTLINE;
-		PROD_DETAIL = pROD_DETAIL;
+		this.prod_id = prod_id;
+		this.prod_name = prod_name;
+		this.prod_lgu = prod_lgu;
+		this.prod_buyer = prod_buyer;
+		this.prod_cost = prod_cost;
+		this.prod_price = prod_price;
+		this.prod_sale = prod_sale;
+		this.prod_outline = prod_outline;
+		this.prod_detail = prod_detail;
 	}
-
-
-
 
 	public String getLprod_gu() {
 		return lprod_gu;
 	}
 
-
-
-
 	public void setLprod_gu(String lprod_gu) {
 		this.lprod_gu = lprod_gu;
 	}
-
-
-
 
 	public String getLprod_nm() {
 		return lprod_nm;
 	}
 
-
-
-
 	public void setLprod_nm(String lprod_nm) {
 		this.lprod_nm = lprod_nm;
 	}
 
-
-
-
-	public String getPROD_ID() {
-		return PROD_ID;
+	public String getProd_id() {
+		return prod_id;
 	}
 
-
-
-
-	public void setPROD_ID(String pROD_ID) {
-		PROD_ID = pROD_ID;
+	public void setProd_id(String prod_id) {
+		this.prod_id = prod_id;
 	}
 
-
-
-
-	public String getPROD_NAME() {
-		return PROD_NAME;
+	public String getProd_name() {
+		return prod_name;
 	}
 
-
-
-
-	public void setPROD_NAME(String pROD_NAME) {
-		PROD_NAME = pROD_NAME;
+	public void setProd_name(String prod_name) {
+		this.prod_name = prod_name;
 	}
 
-
-
-
-	public String getPROD_LGU() {
-		return PROD_LGU;
+	public String getProd_lgu() {
+		return prod_lgu;
 	}
 
-
-
-
-	public void setPROD_LGU(String pROD_LGU) {
-		PROD_LGU = pROD_LGU;
+	public void setProd_lgu(String prod_lgu) {
+		this.prod_lgu = prod_lgu;
 	}
 
-
-
-
-	public String getPROD_BUYER() {
-		return PROD_BUYER;
+	public String getProd_buyer() {
+		return prod_buyer;
 	}
 
-
-
-
-	public void setPROD_BUYER(String pROD_BUYER) {
-		PROD_BUYER = pROD_BUYER;
+	public void setProd_buyer(String prod_buyer) {
+		this.prod_buyer = prod_buyer;
 	}
 
-
-
-
-	public String getPROD_COST() {
-		return PROD_COST;
+	public String getProd_cost() {
+		return prod_cost;
 	}
 
-
-
-
-	public void setPROD_COST(String pROD_COST) {
-		PROD_COST = pROD_COST;
+	public void setProd_cost(String prod_cost) {
+		this.prod_cost = prod_cost;
 	}
 
-
-
-
-	public String getPROD_PRICE() {
-		return PROD_PRICE;
+	public String getProd_price() {
+		return prod_price;
 	}
 
-
-
-
-	public void setPROD_PRICE(String pROD_PRICE) {
-		PROD_PRICE = pROD_PRICE;
+	public void setProd_price(String prod_price) {
+		this.prod_price = prod_price;
 	}
 
-
-
-
-	public String getPROD_SALE() {
-		return PROD_SALE;
+	public String getProd_sale() {
+		return prod_sale;
 	}
 
-
-
-
-	public void setPROD_SALE(String pROD_SALE) {
-		PROD_SALE = pROD_SALE;
+	public void setProd_sale(String prod_sale) {
+		this.prod_sale = prod_sale;
 	}
 
-
-
-
-	public String getPROD_OUTLINE() {
-		return PROD_OUTLINE;
+	public String getProd_outline() {
+		return prod_outline;
 	}
 
-
-
-
-	public void setPROD_OUTLINE(String pROD_OUTLINE) {
-		PROD_OUTLINE = pROD_OUTLINE;
+	public void setProd_outline(String prod_outline) {
+		this.prod_outline = prod_outline;
 	}
 
-
-
-
-	public String getPROD_DETAIL() {
-		return PROD_DETAIL;
+	public String getProd_detail() {
+		return prod_detail;
 	}
 
-
-
-
-	public void setPROD_DETAIL(String pROD_DETAIL) {
-		PROD_DETAIL = pROD_DETAIL;
+	public void setProd_detail(String prod_detail) {
+		this.prod_detail = prod_detail;
 	}
-
+	
+	
 
 	
 	

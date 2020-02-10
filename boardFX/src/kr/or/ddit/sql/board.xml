@@ -14,9 +14,10 @@
 	 </insert>
 	 
 
- 	 <update id="updateBoard" parameterClass="kr.or.ddit.vo.BoardVO"> 
+ 	 <update id="updateBoard" parameterClass="hashMap"> 
 	 
- 	 UPDATE jdbc_board set board_title =#board_title#, board_writer =#board_writer#, board_content =#board_content# WHERE board_no =#board_no#
+ 	 UPDATE jdbc_board set board_title =#board_title#, board_writer =#board_writer#, board_content =#board_content#
+ 	 WHERE board_no = #bdNo# and board_title = #bdTitle# and board_writer = #bdWriter# and to_char(board_content) = #bdContent#  
 	 
  	 </update>
 	 

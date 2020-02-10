@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.ibatis.common.resources.Resources;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -76,11 +77,11 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int updateBoard(BoardVO bv) {
+	public int updateBoard(Map<String, String> bmap) {
 		int cnt = 0;
 		
 		try {
-		cnt = smc.update("board.updateBoard",bv);
+		cnt = smc.update("board.updateBoard",bmap);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}

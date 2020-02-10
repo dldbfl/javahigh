@@ -33,7 +33,7 @@ public class grade_main extends Application {
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("grade");
 		primaryStage.setScene(scene);
-		primaryStage.show();
+		primaryStage.show();	
 	}
 	
 	public static void main(String[] args) {

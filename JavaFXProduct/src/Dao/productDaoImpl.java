@@ -57,6 +57,21 @@ public class productDaoImpl implements productDao{
 		}
 		return COMBO1;
 	}
+
+
+
+	@Override
+	public List<productVo> COMBO2(String A) {
+		List<productVo> COMBO2 = new ArrayList<>();
+		
+		try {
+			COMBO2=smc.queryForList("productTest.selectpd2",A);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return COMBO2;
+	}
 	
 	
 	

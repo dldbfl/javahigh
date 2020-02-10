@@ -5,14 +5,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,8 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -298,6 +293,7 @@ public class grade_controller  {
 					ser3.getData().add(new XYChart.Data<String, Number>(tableList.get(i).getTname(),tableList.get(i).getTmath()));
 					
 					}
+				System.out.println(tableList.get(1).getTname());
 	
 				parent.getData().addAll(ser1,ser2,ser3);
 				// 5. Scene 객체 생성해서 컨테이너 객체 추가

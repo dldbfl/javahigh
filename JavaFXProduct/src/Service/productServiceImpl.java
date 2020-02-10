@@ -31,6 +31,7 @@ public class productServiceImpl implements productService{
 			
 			smc = SqlMapClientBuilder.buildSqlMapClient(rd);
 			rd.close();
+			
 		} catch (IOException e) {
 			System.out.println("SqlMapClient 객체 생성 실패");
 			e.printStackTrace();
@@ -53,6 +54,12 @@ public class productServiceImpl implements productService{
 	public List<productVo> COMBO1() {
 		// TODO Auto-generated method stub
 		return productDao.COMBO1();
+	}
+
+	@Override
+	public List<productVo> COMBO2(String A) {
+		// TODO Auto-generated method stub
+		return productDao.COMBO2(A);
 	}
 
 }

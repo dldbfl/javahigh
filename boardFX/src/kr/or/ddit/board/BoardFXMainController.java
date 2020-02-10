@@ -1,17 +1,16 @@
 package kr.or.ddit.board;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import kr.or.ddit.service.BoardServiceImpl;
 import kr.or.ddit.vo.BoardVO;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.Node;
@@ -36,6 +35,7 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TextArea;
 
 public class BoardFXMainController implements Initializable {
+	private int from, to ,itemsForpage;
 	private BoardServiceImpl bsi = BoardServiceImpl.getInstance();
 	@FXML TableView<BoardVO> tableView;
 	@FXML TableColumn<BoardVO, String> board_no;
@@ -50,9 +50,9 @@ public class BoardFXMainController implements Initializable {
 	@FXML Button mainExit;
 	@FXML ComboBox<String> comboMenu;
 	@FXML TextField searchText;
-	@FXML Pagination Pagination;
+	@FXML Pagination page;
 	List<BoardVO> boardList;
-	private ObservableList<BoardVO> tableData;
+	private ObservableList<BoardVO> tableData , currentPageData;
 	private ObservableList<String> comboData;
 	List <BoardVO> bv = new ArrayList<BoardVO>();
 	Parent parent = null;
@@ -63,24 +63,11 @@ public class BoardFXMainController implements Initializable {
 	@FXML Button writeCancel;
 	@FXML TextField writer;
 	@FXML Button display;
-	
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		comboData = FXCollections.observableArrayList(
-				"No", "제목", "작성자"
-							);
-		
-		comboMenu.setItems(comboData);
-		board_no.setCellValueFactory(new PropertyValueFactory<>("board_no"));
-		board_title.setCellValueFactory(new PropertyValueFactory<>("board_title"));
-		board_writer.setCellValueFactory(new PropertyValueFactory<>("board_writer"));
-		board_date.setCellValueFactory(new PropertyValueFactory<>("board_date"));
-		board_content.setCellValueFactory(new PropertyValueFactory<>("board_content"));
-
-		boardList = bsi.displayBoardAll();
-		tableData = FXCollections.observableArrayList(boardList);
-		tableView.setItems(tableData);
+		display();
 
 }
 
@@ -167,9 +154,7 @@ public class BoardFXMainController implements Initializable {
 		bv.setBoard_content(bdContent);
 		bsi.insertContent(bv);
 		info("작성완료 ","게시글을 작성했습니다");
-		boardList = bsi.displayBoardAll();
-		tableData = FXCollections.observableArrayList(boardList);
-		tableView.setItems(tableData);
+		display();
 		dialog.close();
 		}
 		}catch (Exception ex) {
@@ -245,23 +230,32 @@ public class BoardFXMainController implements Initializable {
 		btn1.setOnAction(e->{
 		try {	
 		String bdno = tableView.getSelectionModel().getSelectedItem().getBoard_no();
-		String bdTitle = txtField1.getText();
-		String bdWriter = txtField2.getText();
-		String bdContent = txtArea.getText();
-		BoardVO bv = new BoardVO();
+		String bdTitle = tableView.getSelectionModel().getSelectedItem().getBoard_title();
+		String bdWriter = tableView.getSelectionModel().getSelectedItem().getBoard_writer();
+		String bdContent = tableView.getSelectionModel().getSelectedItem().getBoard_content();
+		
+		
+		String bdTitle1 = txtField1.getText();
+		String bdWriter1 = txtField2.getText();
+		String bdContent1 = txtArea.getText();
+
+		
 		if(bdno.isEmpty() || bdTitle.isEmpty() || bdWriter.isEmpty() || bdContent.isEmpty()) {
 			info("빈칸 발견", "빈칸을 확인해주세요");
 			return;
 		}else {
-		bv.setBoard_no(bdno);
-		bv.setBoard_title(bdTitle);
-		bv.setBoard_writer(bdWriter);
-		bv.setBoard_content(bdContent);
-		bsi.updateBoard(bv);
+		Map<String,String> bmap = new HashMap<String,String>();
+		bmap.put("bdNo", bdno);
+		bmap.put("bdTitle", bdTitle);
+		bmap.put("bdWriter", bdWriter);
+		bmap.put("bdContent", bdContent);
+		
+		bmap.put("board_title", bdTitle1);
+		bmap.put("board_writer", bdWriter1);
+		bmap.put("board_content", bdContent1);
+		bsi.updateBoard(bmap);
 		info("수정완료 ","게시글을 수정했습니다");
-		boardList = bsi.displayBoardAll();
-		tableData = FXCollections.observableArrayList(boardList);
-		tableView.setItems(tableData);
+		display();
 		dialog.close();
 		}
 		}catch (Exception ex) {
@@ -305,13 +299,13 @@ public class BoardFXMainController implements Initializable {
 
 	@FXML public void combo(ActionEvent event) {
 		String s = comboMenu.getSelectionModel().getSelectedItem();
-		searchText.setText("");
+		display();
+		searchText.clear();
 			try {
 				mainSearch.setOnAction(e->{
 					BoardVO bv = new BoardVO();
-					if(s.equals("No") && s == "^[0-9]*$") {
+					if(s.equals("No")) {
 					String bdno = searchText.getText();
-					System.out.println(bdno);
 					bv.setBoard_no(bdno);
 					}else if(s.equals("제목")) {
 					String bdtitle = searchText.getText();
@@ -340,8 +334,57 @@ public class BoardFXMainController implements Initializable {
 	}
 
 	@FXML public void display(ActionEvent event) {
+
+		display();
+	}
+	public void display() {
+		comboData = FXCollections.observableArrayList(
+		"No", "제목", "작성자"
+					);
+		
+		comboMenu.setItems(comboData);
+		board_no.setCellValueFactory(new PropertyValueFactory<>("board_no"));
+		board_title.setCellValueFactory(new PropertyValueFactory<>("board_title"));
+		board_writer.setCellValueFactory(new PropertyValueFactory<>("board_writer"));
+		board_date.setCellValueFactory(new PropertyValueFactory<>("board_date"));
+		board_content.setCellValueFactory(new PropertyValueFactory<>("board_content"));
 		boardList = bsi.displayBoardAll();
 		tableData = FXCollections.observableArrayList(boardList);
 		tableView.setItems(tableData);
+		itemsForpage = 18; //한페이지에 보여줄 항목 수 설정
+		int totPageCount = tableData.size()%itemsForpage == 0 ?
+				tableData.size()/itemsForpage : tableData.size()/itemsForpage + 1;
+		
+		page.setPageCount(totPageCount);// 전체페이지 수 설정
+		
+		page.setPageFactory(new Callback<Integer, Node>() {
+			
+			@Override
+			public Node call(Integer pageIndex) {
+				from = pageIndex * itemsForpage;
+				to = from + itemsForpage -1;
+				
+				tableView.setItems(getTableViewData(from,to));
+				
+				return tableView;
+			}
+			/**
+			 * TableView에 채워줄 데이터를 가져오는 메서드 
+			 * @param from
+			 * @param to
+			 * @return
+			 */
+			private ObservableList<BoardVO> getTableViewData(int from, int to) {
+				//현재페이지의 데이터 초기화
+				currentPageData = FXCollections.observableArrayList();
+				
+				int totSize = tableData.size();
+				for(int i = from; i<= to && i < totSize; i++) {
+					currentPageData.add(tableData.get(i));
+				}
+				
+				return currentPageData;
+			}
+		});
 	}
 }

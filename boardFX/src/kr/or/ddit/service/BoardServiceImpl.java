@@ -2,6 +2,7 @@ package kr.or.ddit.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.dao.BoardDaoImpl;
 import kr.or.ddit.vo.BoardVO;
@@ -37,9 +38,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int updateBoard(BoardVO bv) {
+	public int updateBoard(Map<String, String> bmap) {
 		
-		return bdo.updateBoard(bv);
+		return bdo.updateBoard(bmap);
 	}
 
 	@Override

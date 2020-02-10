@@ -1,8 +1,5 @@
 /Controller/
-/Dao/
 /Service/
-/SqlMapConfig.properties
-/SqlMapConfig.xml
+/Dao/
 /Utill/
 /Vo/
-/product.fxml

@@ -12,6 +12,7 @@ public class product_Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		
 		Parent root = FXMLLoader.load(getClass().getResource("/product.fxml"));
+		//  /를 붙이면 바로 위 공간을 의미함.
 		
 		Scene scene =new Scene(root);
 		
