@@ -5,23 +5,21 @@
 
 <sqlMap namespace = "board">
 
-	 <insert id="insertContent" parameterClass="vo.BoardVO"> 
+	 <insert id="insertBoard" parameterClass="vo.BoardVO"> 
 	 
-	 INSERT INTO jdbc_board (board_no, board_title, board_writer, board_date, board_content)
-				 
-					 VALUES (board_seq.NEXTVAL,#board_title#,#board_writer#,SYSDATE,#board_content#)
-	 
+	INSERT INTO jdbc_board VALUES (BOARD_SEQ.NEXTVAL, #board_title#, #board_writer#, SYSDATE, #board_content#)
+		 
 	 </insert>
 	 
 
- 	 <update id="updateBoard" parameterClass="hashMap"> 
+ 	 <update id="updateBoard" parameterClass="vo.BoardVO"> 
 	 
- 	 UPDATE jdbc_board set board_title =#board_title#, board_writer =#board_writer#, board_content =#board_content#
- 	 WHERE board_no = #bdNo# and board_title = #bdTitle# and board_writer = #bdWriter# and to_char(board_content) = #bdContent#  
-	 
+ 	  UPDATE jdbc_board SET board_title = #board_title#, board_writer = #board_writer#
+	 		, board_content = #board_content# WHERE board_no = #board_no#
+	  
  	 </update>
 	 
- 	 <delete id="deleteBoard" parameterClass="String"> 
+ 	 <delete id="deleteBoard" parameterClass="Integer"> 
 	 
 	 delete from jdbc_board where board_no = #board_no#
 	 

@@ -18,16 +18,16 @@ public class ChatServerRunnable implements Runnable{
 
 	//UDP연결을 담당할 소켓
 	private DatagramSocket socket = null;
-	//클라이언트의 ip주소 리스트 - MainController의 clientList와 같은 주소를 바라보고 있음
+	//클라이언트의 ip주소 리스트 - MainController의 clientList와 같은 주소
 	private ObservableList<String> clientList;
 	private Map<String, ClientVO> clientMap;
-	//서버 실행 여부
+
 	private boolean isServerOn = true;
 	
-	//생성자
+
 	public ChatServerRunnable(ObservableList<String> clientList, Map<String, ClientVO> clientMap){
 		try {
-			//객체가 생성될 때 소켓을 7777포트로 초기화
+			//객체가 생성될 때 소켓을 초기화
 			this.socket = new DatagramSocket(7777);
 			//소켓의 타임아웃을 0.5초로 설정 - 클라이언트로부터 데이터가 들어오지 않은채로
 			//0.5초가 지나면 타임아웃 익셉션을 발생시키고 넘어가게 됨
@@ -51,22 +51,22 @@ public class ChatServerRunnable implements Runnable{
 				
 				boolean isExist = clientList.contains(address.getHostName());
 			
-				if(!isExist){ // 목록에 존재하지 않는 사용자라면..
+				if(!isExist){ // 사용자가 아니면
 					Platform.runLater(new Runnable() {
 						
 						@Override
 						public void run() {
-							clientList.add(address.getHostName()); // JavaFx Application 쓰레드 관련 작업임.
+							clientList.add(address.getHostName()); // JavaFx Application 쓰레드 관련 작업
 						}
 					});
 					
 					ClientVO vo = new ClientVO(address.getHostAddress(), 
 												port, 
-												new String(inPacket.getData()).trim() // 대화명에서 불필요한 공백 제거.
+												new String(inPacket.getData()).trim() 
 												);
 					clientMap.put(address.getHostName(), vo);
 					
-				}else{ // 목록에 존재하는 사용자인 경우...(이미 채팅중인 사용자인 경우...)
+				}else{ // 이미 채팅중인 사용자인 경우
 				
 					System.out.println(new String(inPacket.getData()));
 					
@@ -80,7 +80,7 @@ public class ChatServerRunnable implements Runnable{
 						InetAddress ipAddress = InetAddress.getByName(vo.getIpAddr());
 						DatagramPacket outPacket = null;
 						if(address.getHostName().equals(vo.getIpAddr()) 
-							&& (port != vo.getPortNum())) { // 아이피주소는 동일한데 포트번호가 다른경우...
+							&& (port != vo.getPortNum())) { // 아이피주소같고 포트번호가 다를때
 							vo.setPortNum(port);
 							clientMap.put(ipAddr, vo); // 기존 정보 갱신
 						}
@@ -93,7 +93,7 @@ public class ChatServerRunnable implements Runnable{
 					}
 				}
 				
-				//Thread.sleep(500);
+			
 			} catch(SocketTimeoutException e){	
 				
 			} catch (IOException e) {

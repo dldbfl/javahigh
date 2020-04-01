@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="controller.BoardController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableview" layoutX="20.0" layoutY="6.0" prefHeight="284.0" prefWidth="560.0">
+        <columns>
+          <TableColumn fx:id="no" prefWidth="112.0" text="no" />
+          <TableColumn fx:id="name" prefWidth="112.0" text="게시글제목" />
+            <TableColumn fx:id="writer" prefWidth="112.0" text="작성자" />
+            <TableColumn fx:id="date" prefWidth="112.0" text="작성날짜" />
+            <TableColumn fx:id="content" prefWidth="112.0" text="작성내용" />
+        </columns>
+      </TableView>
+      <Button fx:id="addBtn" layoutX="27.0" layoutY="356.0" mnemonicParsing="false" onAction="#addBoard" text="게시글추가" />
+      <Button fx:id="exit" layoutX="533.0" layoutY="356.0" mnemonicParsing="false" onAction="#exit" text="종료" />
+      <Pagination fx:id="pagination" layoutY="-2.0" prefHeight="342.0" prefWidth="600.0" />
+      <TextField fx:id="search" layoutX="221.0" layoutY="356.0" prefHeight="23.0" prefWidth="159.0" />
+      <Button fx:id="searchBtn" layoutX="390.0" layoutY="356.0" mnemonicParsing="false" text="검색" />
+   </children>
+</AnchorPane>

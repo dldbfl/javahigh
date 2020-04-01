@@ -6,7 +6,6 @@ import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 
@@ -32,7 +31,8 @@ public class BoardDaoImpl implements BoardDao {
 		rd.close();
 		
 	   }catch(IOException e) {
-		   
+		   System.out.println("SqlMapClient 객체 생성 실패!");
+			e.printStackTrace();
 	   }
 		
 	}
@@ -46,75 +46,93 @@ public class BoardDaoImpl implements BoardDao {
 		return bDao;
   }
 
+
 	@Override
-	public int insertContent(BoardVO bv) {
+	public int insertBoard(BoardVO bv) {
 		int cnt = 0;
 		
-		try {
-		Object obj = smc.insert("board.insertContent", bv); 
-		
-		if(obj == null) {
+		try{
+			Object obj = smc.insert("board.insertBoard", bv);
 			
-			cnt = 1;
+			if(obj == null) {	//성공
+				cnt = 1;
+			}
 			
-		 }
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}	
-		return cnt;
-	}
-
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<BoardVO> displayBoardAll() {
-		
-		
-		List <BoardVO> bv = new ArrayList<BoardVO>();
-		try {
-			
-			bv = smc.queryForList("board.displayBoardAll");
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return bv;
-	}
-
-	@Override
-	public int updateBoard(Map<String, String> bmap) {
-		int cnt = 0;
-		
-		try {
-		cnt = smc.update("board.updateBoard",bmap);
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return cnt;
-	}
-
-	@Override
-	public int deleteBoard(String memId) {
-		int cnt = 0;
-		try {
-			cnt = smc.delete("board.deleteBoard",memId);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return cnt;
 	}
 
+	@Override
+	public int updateBoard(BoardVO bv) {
+		int cnt = 0;
+		
+		try {	
+			cnt = smc.update("board.updateBoard", bv);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+
+	@Override
+	public int deleteBoard(int board_no) {
+		int cnt = 0;
+		
+		try {
+			cnt = smc.delete("board.deleteBoard", board_no);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BoardVO> displayBoardAll() {
+		List<BoardVO> boardList = new ArrayList<BoardVO>();
+		
+		try {
+			boardList = smc.queryForList("board.displayBoardAll");
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return boardList;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BoardVO> searchBoard(BoardVO bv) {
+		List<BoardVO> boardList = new ArrayList<>();
 		
-		List<BoardVO> bdist = new ArrayList<BoardVO>();
-				
 		try {
-			bdist =smc.queryForList("board.searchBoard",bv);
+			boardList = smc.queryForList("board.searchBoard", bv);
+			
 		}catch(SQLException e) {
+			boardList = null;
 			e.printStackTrace();
 		}
-		return bdist;
+		return boardList;
+	}
+
+	@Override
+	public boolean getBoard(int board_no) {
+		boolean chk = false;
+		
+		try {
+			int cnt = (int) smc.queryForObject("board.getBoard", board_no);
+			
+			if(cnt > 0) {
+				chk = true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			chk = false;
+		}
+		return chk;
 	}
 
 

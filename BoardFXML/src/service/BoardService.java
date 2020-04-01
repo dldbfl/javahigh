@@ -2,20 +2,21 @@ package service;
 
 
 import java.util.List;
-import java.util.Map;
 import vo.BoardVO;
 
 
 
 public interface BoardService {
 
-	public int insertContent (BoardVO bv) ;
+	public int insertBoard (BoardVO bv) ;
 	
 	public List<BoardVO> displayBoardAll();
 	
-	public int updateBoard(Map<String, String> bmap) ;
+	public int updateBoard(BoardVO bv) ;
 	
-	public int deleteBoard(String memId);
+	public int deleteBoard(int board_no);
 	
 	public List<BoardVO> searchBoard(BoardVO bv);
+	
+	public boolean getBoard(int board_no);
 }

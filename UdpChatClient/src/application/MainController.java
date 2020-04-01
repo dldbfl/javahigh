@@ -34,7 +34,7 @@ public class MainController implements Initializable{
 			socket = new DatagramSocket();
 			socket.setSoTimeout(500);
 			serverAddress = InetAddress.getByName("192.168.205.10"); // 서버주소 설정
-			String chatName = showPromptWindow(); // 대화명을 입력받는다.
+			String chatName = showPromptWindow(); // 대화명 입력
 			
 			// 대화명 전송
 			DatagramPacket outPacket = 
@@ -65,18 +65,18 @@ public class MainController implements Initializable{
 		String strResult = "";  // 대화가 저장될 변수 선언
 		
 		do{
-			// '기본값'은 생략 가능
+			// '기본값'은 생략 가능해
 			TextInputDialog javaPrompt = new TextInputDialog("대화명"); 
 			
-			javaPrompt.setTitle("대화명 입력창"); // 창 제목
-			javaPrompt.setHeaderText("대화명을 입력해 주세요."); // 출력 메시지
+			javaPrompt.setTitle("대화명 입력창"); 
+			javaPrompt.setHeaderText("대화명을 입력해 주세요.");
 			
-			// 창을 보이고 입력한 값을 읽어오기
+			
 			Optional<String> result = javaPrompt.showAndWait();
 			
-			// 입력한 값이 있는지 검사 (값 입력후 'OK'버튼 눌렀는지 검사)
+			// 값 입력후 'OK'버튼 눌렀는지 검사
 			if(result.isPresent()) { 
-				strResult = result.get(); // 값 읽어오기
+				strResult = result.get(); // 값 가져오기
 			}
 		}while(strResult.isEmpty());
 		

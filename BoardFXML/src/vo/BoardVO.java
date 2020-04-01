@@ -1,5 +1,7 @@
 package vo;
 
+import java.io.Serializable;
+
 /**
  * 
  *  테이블에 있는 컬럼을 기준으로 데이터를 객체화한 클래스
@@ -10,19 +12,23 @@ package vo;
  *</p>
  *
  */
-public class BoardVO {
+public class BoardVO implements Serializable {
 	
 	
-	private String board_no;// 게시번호
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8707448855461133754L;
+	private int board_no;// 게시번호
 	private String board_title;// 제목
 	private String board_writer;// 작성자
 	private String board_date;//작성 날짜
 	private String board_content;// 내용
 	
-	public String getBoard_no() {
+	public int getBoard_no() {
 		return board_no;
 	}
-	public void setBoard_no(String board_no) {
+	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
 	}
 	public String getBoard_title() {

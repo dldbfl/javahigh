@@ -23,8 +23,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient, R
 
 		ChatClientImpl.name = name;
 
-		// 1. 등록된 서버를 찾기 위해 Registry객체를 생성한 후
-		// 사용할 객체를 불러온다.
+		// 등록된 서버를 찾기 위해 Registry객체를 생성한 후 사용할 객체를 불러온다.
 		Registry reg = LocateRegistry.getRegistry("192.168.205.10", 8888);
 
 		server = (ChatServer) reg.lookup("RMIChatServer");
@@ -71,7 +70,7 @@ public class ChatClientImpl extends UnicastRemoteObject implements ChatClient, R
 
    public static void main(String[] args) throws Exception {
 	   
-	   String str = JOptionPane.showInputDialog("대화명을 입력하세요");
+	   String str = JOptionPane.showInputDialog("대화명을 입력하시오");
 	   
        new Thread(new ChatClientImpl(str)).start();        
 

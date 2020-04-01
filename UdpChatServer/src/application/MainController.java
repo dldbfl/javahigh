@@ -24,7 +24,7 @@ public class MainController implements Initializable{
 	//리스트뷰의 데이터와 바인드 될 리스트
 	private ObservableList<String> clientList;
 
-	// 접속한 클라이언트 정보를 담기위한 Map
+	// 접속한 클라이언트 정보를 담을 Map
 	private Map<String, ClientVO> clientMap;
 	
 	//채팅 참여하는 클라이언트를 리스트에 추가해 줄 쓰레드의 Runnable 구현 클래스
@@ -47,7 +47,7 @@ public class MainController implements Initializable{
 	@FXML
 	public void turnOnServer(ActionEvent event){
 		System.out.println("서버가 시작되었음...");
-		//서버실행 버튼을 누르면 클라이언트의 ip주소를 추가해주는 쓰레드를 시작
+		//서버실행 버튼을 누르면 클라이언트의 ip주소를 추가해준다
 		chatServerRunnable = new ChatServerRunnable(clientList, clientMap);
 		Thread thread = new Thread(chatServerRunnable);
 		thread.setDaemon(true);
@@ -60,9 +60,9 @@ public class MainController implements Initializable{
 	 */
 	@FXML
 	public void turnOffServer(ActionEvent event){
-		//서버 실행 쓰레드의 작동여부를 false로 바꿔주면 쓰레드가 종료됨
+		//서버 실행 쓰레드의 작동여부를 false로 - 끝
 		chatServerRunnable.turnOffServer();
-		//서버가 종료되었으므로 클라이언트 리스트를 초기화
+		//서버가 종료 // 리스트 초기화
 		clientList.clear();
 	}
 }

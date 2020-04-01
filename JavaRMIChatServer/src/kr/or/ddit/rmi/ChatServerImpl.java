@@ -22,15 +22,11 @@ public class ChatServerImpl extends UnicastRemoteObject implements ChatServer {
 
           System.out.println("ChatServerImpl.main:creating registry");
           
-          //System.setProperty("java.rmi.server.hostname","192.168.0.23");
-
           ChatServerImpl Server = new ChatServerImpl();    
           
           Registry reg = LocateRegistry.createRegistry(8888);
 
           reg.rebind("RMIChatServer", Server);
-    //      Naming.rebind("RMIChatServer", Server);
-
           System.out.println("ChatServerImpl is running...");
 
        } catch (Exception e){

@@ -23,7 +23,7 @@ public class ChatClientRunnable implements Runnable{
 		while(true){
 			DatagramPacket inPacket = new DatagramPacket(msg, msg.length);
 			try {
-				socket.receive(inPacket); // 이 메서드는 패킷을 수신할때까지 BLOCK 됨. 받은 데이터는 inPacket 안에..
+				socket.receive(inPacket); //  패킷을 수신할때까지 BLOCK되고 inPacket안에 데이터 저장됨
 				System.out.println(new String(inPacket.getData()));
 				taChatList.appendText(new String(inPacket.getData())+"\n");
 			}catch (SocketTimeoutException e){

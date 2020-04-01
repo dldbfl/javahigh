@@ -2,7 +2,7 @@ package service;
 
 
 import java.util.List;
-import java.util.Map;
+
 
 import dao.BoardDaoImpl;
 import vo.BoardVO;
@@ -17,42 +17,39 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 	public static BoardServiceImpl getInstance () {
-		
-		if(Bsi == null) {
-			
+		if(Bsi == null) {			
 			Bsi = new BoardServiceImpl();
 		}
 		return Bsi;
 	}
+
+
+	
 	@Override
-	public int insertContent(BoardVO bv) {
-		
-		return bdo.insertContent(bv);
+	public int insertBoard(BoardVO bv) {
+		return bdo.insertBoard(bv);
 	}
-
-
 	@Override
-	public List<BoardVO> displayBoardAll() {
-		
+	public int deleteBoard(int board_no) {
+		return bdo.deleteBoard(board_no);
+	}
+	@Override
+	public List<BoardVO> displayBoardAll() {		
 		return bdo.displayBoardAll();
 	}
-
+	
 	@Override
-	public int updateBoard(Map<String, String> bmap) {
-		
-		return bdo.updateBoard(bmap);
-	}
-
+	public int updateBoard(BoardVO bv) {		
+		return bdo.updateBoard(bv);	}
+	
+	
 	@Override
-	public int deleteBoard(String memId) {
-		
-		return bdo.deleteBoard(memId);
-	}
-
-	@Override
-	public List<BoardVO> searchBoard(BoardVO bv) {
-		
+	public List<BoardVO> searchBoard(BoardVO bv) {		
 		return bdo.searchBoard(bv);
+	}
+	@Override
+	public boolean getBoard(int board_no) {
+		return bdo.getBoard(board_no);
 	}
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="298.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="board.BoardFXMainController">
+   <children>
+      <TextField fx:id="editwriter" layoutX="54.0" layoutY="38.0" prefHeight="23.0" prefWidth="233.0" />
+      <TextArea fx:id="editContents" layoutX="12.0" layoutY="67.0" prefHeight="157.0" prefWidth="276.0" />
+      <Text layoutX="11.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="글쓴이" />
+      <Text layoutX="11.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="제목" />
+      <TextField fx:id="editTitle" layoutX="54.0" layoutY="7.0" prefHeight="23.0" prefWidth="233.0" />
+      <Button fx:id="Edit" layoutX="29.0" layoutY="230.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="수정" />
+      <Button fx:id="Del" layoutX="189.0" layoutY="230.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="83.0" text="삭제" />
+   </children>
+</AnchorPane>

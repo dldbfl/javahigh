@@ -4,18 +4,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="board.BoardFXMainController">
+<AnchorPane prefHeight="505.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="board.BoardFXMainController">
    <children>
       <TableView fx:id="tv" layoutX="39.0" layoutY="62.0" prefHeight="277.0" prefWidth="522.0">
         <columns>
-          <TableColumn fx:id="board_no" prefWidth="83.0" text="No" />
-          <TableColumn fx:id="board_title" prefWidth="122.0" text="제목" />
-          <TableColumn fx:id="board_writer" prefWidth="73.0" text="작성자" />
-          <TableColumn fx:id="board_date" prefWidth="108.0" text="작성날짜" />
-          <TableColumn fx:id="board_content" prefWidth="135.0" text="내용" />
+          <TableColumn fx:id="bno" prefWidth="83.0" text="No" />
+          <TableColumn fx:id="btitle" prefWidth="122.0" text="제목" />
+          <TableColumn fx:id="bwriter" prefWidth="73.0" text="작성자" />
+          <TableColumn fx:id="bdate" prefWidth="108.0" text="작성날짜" />
+          <TableColumn fx:id="bcontent" prefWidth="135.0" text="내용" />
         </columns>
       </TableView>
-      <Button fx:id="add" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="64.0" text="추가" />
+      <Button fx:id="add" onAction="#writer" layoutX="14.0" layoutY="435.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="64.0" text="추가" />
       <Button fx:id="search" layoutX="392.0" layoutY="435.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="64.0" text="검색" />
       <Button fx:id="display" layoutX="463.0" layoutY="435.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="125.0" text="전체목록" />
       <Button fx:id="exit" layoutX="542.0" layoutY="13.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="46.0" text="종료" />
